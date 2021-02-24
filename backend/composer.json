@@ -89,5 +89,11 @@
             "allow-contrib": false,
             "require": "5.2.*"
         }
-    }
+    },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/Kolbasyatin/Routing.git"
+        }
+    ]
 }

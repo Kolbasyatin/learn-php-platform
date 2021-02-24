@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e85919b43385412488aa3b3ea2f05266",
+    "content-hash": "988ba8fd8196abeb873e755343a233f6",
     "packages": [
         {
             "name": "api-platform/core",
@@ -2374,16 +2374,16 @@
         },
         {
             "name": "symfony-cmf/routing",
-            "version": "2.3.3",
+            "version": "2.3.4",
             "source": {
                 "type": "git",
-                "url": "https://github.com/symfony-cmf/Routing.git",
-                "reference": "3c97e7b7709b313cecfb76d691ad4cc22acbf3f5"
+                "url": "https://github.com/Kolbasyatin/Routing.git",
+                "reference": "df163abfa030f2c3b6d611b33b04dd20fa9c8069"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony-cmf/Routing/zipball/3c97e7b7709b313cecfb76d691ad4cc22acbf3f5",
-                "reference": "3c97e7b7709b313cecfb76d691ad4cc22acbf3f5",
+                "url": "https://api.github.com/repos/Kolbasyatin/Routing/zipball/df163abfa030f2c3b6d611b33b04dd20fa9c8069",
+                "reference": "df163abfa030f2c3b6d611b33b04dd20fa9c8069",
                 "shasum": ""
             },
             "require": {
@@ -2413,7 +2413,11 @@
                     "Symfony\\Cmf\\Component\\Routing\\": "src/"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "autoload-dev": {
+                "psr-4": {
+                    "Symfony\\Cmf\\Component\\Routing\\Tests\\": "tests/"
+                }
+            },
             "license": [
                 "MIT"
             ],
@@ -2430,10 +2434,9 @@
                 "routing"
             ],
             "support": {
-                "issues": "https://github.com/symfony-cmf/Routing/issues",
-                "source": "https://github.com/symfony-cmf/Routing/tree/2.3.3"
+                "source": "https://github.com/Kolbasyatin/Routing/tree/2.3.4"
             },
-            "time": "2020-10-06T10:15:37+00:00"
+            "time": "2021-02-24T17:47:48+00:00"
         },
         {
             "name": "symfony-cmf/routing-bundle",
