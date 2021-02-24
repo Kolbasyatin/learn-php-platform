@@ -1,0 +1,63 @@
+version: '3.7'
+services:
+    php:
+        build:
+            context: ..
+            dockerfile: .docker/php/Dockerfile
+            args:
+                PUID: $PUID
+                PGID: $PGID
+                PHP_VERSION: $PHP_VERSION
+                PHP_TYPE: cli
+            target: dev
+        image: "$IMAGE_NAME-cli"
+        container_name: sblogisticv2-php
+        working_dir: /var/www/app
+        command: symfony serve --port 8000 --no-tls
+        ports:
+            - "${SYMFONY_EXTERNAL_PORT}:8000"
+        volumes:
+            - ../:/var/www/app
+            - ./php/conf.d/php-ini-overrides.ini:/usr/local/etc/php/conf.d/zz_php-ini-overrides.ini
+        depends_on:
+            - db
+        networks:
+            - sblogistic
+    db:
+        image: postgres:13.2
+        hostname: postgres
+        container_name: sblogisticv2-postgres
+        environment:
+            POSTGRES_DB: $POSTGRES_DB
+            POSTGRES_USER: $POSTGRES_USER
+            POSTGRES_PASSWORD: $POSTGRES_PASSWORD
+            POSTGRES_TEST_DB: $POSTGRES_TEST_DB
+            POSTGRES_TEST_USER: $POSTGRES_TEST_USER
+            POSTGRES_TEST_PASSWORD: $POSTGRES_TEST_PASSWORD
+        ports:
+            - "${POSTGRES_EXTERNAL_PORT}:5432"
+        volumes:
+            - sblogist2_dev_db:/var/lib/postgresql/data
+            - ./postgres/initdb.d/:/docker-entrypoint-initdb.d/
+        networks:
+            - sblogistic
+
+    mail:
+        image: mailhog/mailhog
+        hostname: mail
+        container_name: sblogisticv2-mailhog
+        ports:
+            - "8025:8025"
+        networks:
+            - sblogistic
+networks:
+    sblogistic:
+        name: sblogistic
+        driver: bridge
+        ipam:
+            driver: default
+            config:
+                - subnet: 10.19.20.0/24
+
+volumes:
+    sblogist2_dev_db:

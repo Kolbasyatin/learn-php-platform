@@ -1,0 +1,15 @@
+version: "3.7"
+services:
+    node:
+        image: node:14.15.1
+        hostname: node
+        container_name: sblobisticv2-node
+        working_dir: /var/www/app
+        user: node
+        command: yarn dev-server --host 0.0.0.0 --port 8282
+        volumes:
+            - ..:/var/www/app
+        ports:
+            - 8282:8282
+        expose:
+            -   8282
